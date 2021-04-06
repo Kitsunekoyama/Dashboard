@@ -1,0 +1,17 @@
+{
+  "name": "Dashboard",
+  "displayName": "Dashboard",
+  "expo": {
+    "name": "Dashboard",
+    "slug": "Dashboard",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "compilerOptions": {
+      "types": [
+          "gapi"
+        ]
+    }
+}

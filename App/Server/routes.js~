@@ -1,0 +1,62 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+    host : 'db',
+    port : '3306',
+  user : 'root',
+    password : 'test',
+    database: 'mydb',
+    insecureAuth : true
+});
+
+const app = express();
+
+/*
+app.get('/signUp', function(req, res) {
+    
+    LocalStorage.set('req.username', {'req.username', 'req.password'});
+    
+}*/
+        
+app.get('/users', function (req, res) {
+
+    connection.connect();
+/*    const connection = mysql.createConnection({
+        host : 'db',
+        port : '3306',
+        user : 'mysql',
+        password : 'root',
+        database : 'mydb',
+        insecureAuth : true
+    });
+    
+    connection.connect();*/
+    
+    res.send("test");
+    /*var LocalStorage = require('node-localstorage').LocalStorage;
+    var localStorage = new LocalStorage('./memory');
+    localStorage.setItem('req.username', {username: 'req.password'});
+    var test = localStorage.getItem('req.username');
+    console.log(test);*/
+    connection.query("SELECT * FROM username", function (err, result, fields) {
+        if (err)
+            console.log(err);
+        console.log(result);
+    });
+})
+    /*connection.getConnection(function (err, conn) {
+        console.log(err);
+        
+       conn.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+           if (error) throw error;
+           res.send(results)
+       });
+       //res.send("test");
+       console.log("test");
+   });*/
+
+app.listen(8080, () => {
+    console.log('http://localhost:8080/users');
+});
